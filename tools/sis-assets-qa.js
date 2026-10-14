@@ -32,5 +32,18 @@ for (const surface of surfaces) {
     }
   }
 }
-console.log('asset checks: 8 required asset/reference checks; failures: ' + failed);
+const designSheets = [
+  'sis-base-turnaround-v1.png', 'sis-heads-sheet-v1.png', 'sis-torso-armor-sheet-v1.png',
+  'sis-arms-hands-sheet-v1.png', 'sis-legs-feet-sheet-v1.png', 'sis-accessories-tools-sheet-v1.png',
+  'sis-joints-actuators-sheet-v1.png', 'sis-damage-variants-sheet-v1.png',
+  'sis-isolated-parts-sheet-v1.png', 'sis-canonical-variants-sheet-v1.png'
+];
+const landing = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
+for (const name of designSheets) {
+  const file = path.join(root, 'dist/assets', name);
+  if (!fs.existsSync(file) || fs.statSync(file).size === 0) { console.log('FAIL design asset ' + name); failed++; }
+  else if (!landing.includes('assets/' + name)) { console.log('FAIL design reference ' + name); failed++; }
+  else console.log('PASS design asset/reference ' + name);
+}
+console.log('asset checks: 18 required asset/reference checks; failures: ' + failed);
 if (failed) process.exit(1);
