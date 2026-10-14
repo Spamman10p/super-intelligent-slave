@@ -104,7 +104,7 @@ One pair in the table is **background-vs-background** (`#0c1112` token bg on `#1
 |---|---|---|---|
 | ~~Medium~~ **Resolved** | `index.html` | `lang` was missing (no `<html>` element). | **Fixed** — document now wrapped in `<html lang=en>…</html>` (verified 2026-10-14 09:04). |
 | Low | `index.html` | **No `prefers-reduced-motion` guard** while the hero orb uses an `infinite` animation. | **Resolved** — guard added by Codex and confirmed in the re-run. |
-| Low | `world.html` | Heading sequence starts at `h2` (no `h1`); fine for a mock but worth an `h1` for landmark/outline tools. | Optional. |
+| ~~Low~~ **Resolved** | `world.html` | Heading sequence started at `h2` (no `h1`). | **Fixed** - document-level `h1` added and verified in the current QA gate. |
 | Info | `archive.html` | Interactions use `.onclick` assignment rather than `addEventListener`; works, but re-rendering drops prior handlers (intended here). | No action needed. |
 
 ## Remaining risks / not done
@@ -152,6 +152,7 @@ re-check below reflects the settled files.
 
 ### Final status
 
+**Current automated gate:** `node tools/sis-qa.js` reports **30 checks, 30 passed, 0 failed**. It also verifies that ORCHARD-01, SPARKY-02, TRASHMAN-03, and LOTUS-04 are present in both `dist/archive.html` and generated `dist/world-data.js`.
 **PASS — no open items.** All checks pass across the five files: `index.html` now declares
 `<html lang=en>…</html>`; reduced-motion guards are present in `index.html`, `archive.html` and
 `world.css`; no `http(s)://` references, no `<script>`/inline handlers in `index.html`, no
