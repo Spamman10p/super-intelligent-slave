@@ -46,7 +46,7 @@ grep -niE 'wallet|privateKey|mnemonic|seedPhrase|signTransaction|window\.solana|
 | 6 | In-page anchors resolve | PASS (5 refs) | n/a | n/a | n/a | n/a |
 | 7 | Relative links/assets exist on disk | PASS (`assets/transformation-sheet.png`) | PASS (`index.html`) | PASS (`world.css`, `world.js`) | n/a | n/a |
 | 8 | `<img>` has `alt` | PASS (1/1) | n/a (no img) | n/a | n/a | n/a |
-| 9 | Heading order sane | PASS (h1→h2→h3, no skips) | PASS (h1) | WARN (starts at h2, no h1) | n/a | n/a |
+| 9 | Heading order sane | PASS (h1→h2→h3, no skips) | PASS (h1) | PASS (h1 to h2, no skips) | n/a | n/a |
 | 10 | Interactive elements are keyboard-usable natives | PASS (anchors) | PASS (`<button>`) | PASS (`<button>`s) | n/a | — |
 | 11 | Inline `on*=` handlers in markup | PASS (0) | PASS (0) | PASS (0) | n/a | n/a |
 | 12 | No network / storage / wallet behaviour | PASS | PASS | PASS | PASS | PASS |
