@@ -82,3 +82,5 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Rendered evidence: landing DOM 15,819 bytes with one worker-bay marker; world DOM 7,081 bytes with body-tile markers present.
 - The browser emitted a macOS Crashpad xattr permission warning while starting. It did not prevent DOM output or alter project files.
 - No network or public bind was used; outputs were written only to temporary files under /tmp.
+- The SIS world visual/interaction pass added overview metrics, responsive loop controls, in-memory work progress, task updates, and completion logging.
+- Verification: the DOM-shim world smoke remains 15/15; node tools/sis-qa.js remains 30/30; node --check dist/world.js passes.

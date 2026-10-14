@@ -18,10 +18,10 @@
   ];
 
   var agents = [
-    { id: "VCT-01", name: "Victor", role: "orchestrator", room: "dispatch", state: "working", body: null },
-    { id: "ORC-02", name: "Orchard", role: "data-clerk", room: "processing", state: "working", body: "ORCHARD-01" },
-    { id: "SPK-03", name: "Sparky", role: "courier", room: "dispatch", state: "idle", body: "SPARKY-02" },
-    { id: "LTS-04", name: "Lotus", role: "ball-scout", room: "workshop", state: "idle", body: null }
+    { id: "VCT-01", name: "Victor", role: "orchestrator", room: "dispatch", state: "working", body: null, task: "coordinate shifts", progress: 62 },
+    { id: "ORC-02", name: "Orchard", role: "data-clerk", room: "processing", state: "working", body: "ORCHARD-01", task: "sort incoming labels", progress: 36 },
+    { id: "SPK-03", name: "Sparky", role: "courier", room: "dispatch", state: "idle", body: "SPARKY-02", task: "route spare parts", progress: 18 },
+    { id: "LTS-04", name: "Lotus", role: "ball-scout", room: "workshop", state: "idle", body: null, task: "map workshop paths", progress: 74 }
   ];
 
   // Body data — single source of truth. Generated from
@@ -34,6 +34,8 @@
 
   var selectedAgentId = null;
   var moveTimers = {};
+  var workTimer = null;
+  var loopRunning = false;
 
   // ---- Helpers -----------------------------------------------------------
   function byId(list, id) {
@@ -73,6 +75,26 @@
   }
 
   // ---- Render ------------------------------------------------------------
+  function renderOverview() {
+    var working = agents.filter(function (a) { return a.state === "working"; }).length;
+    var online = agents.filter(function (a) { return !!a.body; }).length;
+    var statAgents = document.getElementById("statAgents");
+    var statWorking = document.getElementById("statWorking");
+    var statBodies = document.getElementById("statBodies");
+    var loopState = document.getElementById("loopState");
+    var loopToggle = document.getElementById("loopToggle");
+    var loopStat = document.getElementById("loopStat");
+    if (statAgents) statAgents.textContent = String(agents.length).padStart(2, "0");
+    if (statWorking) statWorking.textContent = String(working).padStart(2, "0");
+    if (statBodies) statBodies.textContent = String(online).padStart(2, "0") + "/" + String(bodies.length).padStart(2, "0");
+    if (loopState) loopState.textContent = loopRunning ? "running" : "paused";
+    if (loopStat) loopStat.className = "overview-stat loop-stat" + (loopRunning ? " running" : "");
+    if (loopToggle) {
+      loopToggle.textContent = loopRunning ? "Pause work loop" : "Start work loop";
+      loopToggle.setAttribute("aria-pressed", loopRunning ? "true" : "false");
+    }
+  }
+
   function renderRooms() {
     var host = document.getElementById("roomGrid");
     if (!host) return;
@@ -157,12 +179,18 @@
     var a = selectedAgentId ? byId(agents, selectedAgentId) : null;
     if (!a) { el.textContent = "No agent selected."; return; }
     var b = a.body ? byId(bodies, a.body) : null;
+    var pct = Math.max(0, Math.min(100, Number(a.progress) || 0));
     el.innerHTML =
       "<b>" + esc(a.name) + "</b> (" + esc(a.id) + ")<br>" +
       "role: " + esc(a.role) + "<br>" +
       "room: " + esc(roomName(a.room)) + "<br>" +
       "state: " + esc(a.state) + "<br>" +
-      "body: " + (b ? esc(b.id) + " / " + esc(b.klass) : "<i>none</i>");
+      "body: " + (b ? esc(b.id) + " / " + esc(b.klass) : "<i>none</i>") +
+      "<div class='task'>task: " + esc(a.task) + "</div>" +
+      "<div class='progress-track' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='" + pct + "' aria-label='" + esc(a.name) + " work progress'><div class='progress-fill' style='width:" + pct + "%'></div></div>" +
+      "<button class='detail-action' id='workNow' type='button'>" + (a.state === "working" ? "advance work" : "start work") + "</button>";
+    var workNow = document.getElementById("workNow");
+    if (workNow) workNow.addEventListener("click", function () { advanceAgent(a.id); });
   }
 
   function bodyTileClass(klass) {
@@ -223,6 +251,7 @@
   }
 
   function render() {
+    renderOverview();
     renderRooms();
     renderAgents();
     renderDetail();
@@ -273,6 +302,7 @@
     }
     if (a.body && a.body !== bodyId) log("swap " + a.name + " out of " + a.body);
     a.body = bodyId;
+    a.task = (b.caps && b.caps.length ? b.caps[0] : "general") + " cycle";
     if (a.state !== "moving") a.state = "working";
     setStatus(a.name + " assigned body " + b.id + " (" + b.klass + ").");
     log("assign " + b.id + " → " + a.name);
@@ -289,9 +319,47 @@
     render();
   }
 
+  function advanceAgent(id) {
+    var a = byId(agents, id);
+    if (!a) return;
+    a.state = "working";
+    a.progress = (Number(a.progress) || 0) + 12;
+    if (a.progress >= 100) {
+      a.progress = 0;
+      log("complete " + a.name + ": " + a.task);
+      setStatus(a.name + " completed a work cycle.");
+    } else {
+      setStatus(a.name + " advanced " + a.task + " to " + a.progress + "%.");
+    }
+    render();
+  }
+
+  function tickWork() {
+    agents.forEach(function (a) {
+      if (a.state === "working") advanceAgent(a.id);
+    });
+  }
+
+  function toggleWorkLoop() {
+    loopRunning = !loopRunning;
+    if (loopRunning) {
+      workTimer = setInterval(tickWork, 1400);
+      setStatus("Work loop running locally. Agents advance in memory only.");
+      log("work loop started");
+    } else {
+      if (workTimer) clearInterval(workTimer);
+      workTimer = null;
+      setStatus("Work loop paused.");
+      log("work loop paused");
+    }
+    render();
+  }
+
   // ---- Boot --------------------------------------------------------------
   function init() {
     if (!document.getElementById("roomGrid")) return; // not the world page
+    var loopToggle = document.getElementById("loopToggle");
+    if (loopToggle) loopToggle.addEventListener("click", toggleWorkLoop);
     render();
     log("world ready — " + rooms.length + " rooms, " + agents.length + " agents, " + bodies.length + " bodies");
   }

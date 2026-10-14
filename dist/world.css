@@ -113,3 +113,37 @@ footer{padding:0 4vw 40px;max-width:1200px;margin:0 auto}
 .log time{color:var(--c);margin-right:8px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.world-overview{
+  max-width:1200px;margin:0 auto;padding:14px 4vw 0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;align-items:stretch;
+}
+.overview-stat{
+  border:1px solid var(--line);border-radius:9px;padding:10px 12px;
+  background:linear-gradient(145deg,#121b1c,#0d1213);
+  display:flex;flex-direction:column;gap:3px;min-width:0;
+}
+.overview-stat span{color:var(--m);font:10px sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.overview-stat b{font:bold 18px sans-serif;color:var(--c)}
+.loop-stat b{color:var(--m);text-transform:uppercase;font-size:12px}
+.loop-stat.running b{color:var(--a)}
+.loop-toggle{
+  border:1px solid var(--c);border-radius:9px;padding:0 16px;
+  background:#102021;color:var(--c);font:bold 11px sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+}
+.loop-toggle:hover{background:#173032;color:#fff}
+.loop-toggle[aria-pressed="true"]{border-color:var(--a);color:var(--a);box-shadow:0 0 18px #d6ff3f1c}
+@media (max-width:900px){.world-overview{grid-template-columns:repeat(2,1fr)}.loop-toggle{min-height:46px}}
+@media (max-width:520px){.world-overview{grid-template-columns:1fr 1fr;padding-left:4vw;padding-right:4vw}.loop-toggle{grid-column:1/-1;min-height:42px}}
+
+.detail .task{color:#e9eef0;margin-top:8px}
+.progress-track{height:7px;border-radius:99px;background:#1a2526;overflow:hidden;margin:5px 0 9px}
+.progress-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--c),var(--a));transition:width .35s ease}
+.detail-action{
+  border:1px solid var(--line);border-radius:6px;padding:5px 9px;
+  background:#0d1718;color:var(--c);font:bold 10px sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer
+}
+.detail-action:hover{border-color:var(--a);color:var(--a)}
+@media (prefers-reduced-motion:reduce){.progress-fill{transition:none}}

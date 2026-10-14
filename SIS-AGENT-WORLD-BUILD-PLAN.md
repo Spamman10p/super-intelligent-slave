@@ -142,3 +142,9 @@ The repository guard decision is resolved in favor of local Git history.
 - The landing browser-rendered check now passes with Brave headless dump-dom against the local dist/index.html file. Static SIS QA remains 30 passed and 0 failed.
 
 The project remains local mock-only. Git adds reviewability; it does not authorize hosted deployment, provider execution, wallet handling, or device control.
+### Local interaction and visual pass - 2026-10-14
+
+- The static mock world now has an overview strip for agent count, working count, body occupancy, and loop state.
+- A user-controlled local work loop advances working agents in memory, updates progress bars, emits completion events, and can be paused.
+- The selected-agent panel exposes the current task, progress, and a one-step advance control.
+- The pass remains asset-free, network-free, provider-free, and covered by the existing reduced-motion CSS guard.
