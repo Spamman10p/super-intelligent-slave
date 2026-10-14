@@ -14,7 +14,7 @@ From the project root:
     node --check dist/world-data.js
     node --check dist/world.js
 
-The static QA gate checks links, duplicate IDs, accessibility metadata, reduced-motion coverage, and banned network/storage/wallet constructs. The asset gate verifies every canonical body image exists and is referenced by the landing, archive, and world surfaces.
+The static QA gate checks links, duplicate IDs, accessibility metadata, reduced-motion coverage, and banned network/storage/wallet constructs. The asset gate verifies every canonical body image and every Design Library sheet exists and is referenced by the landing page.
 
 ## Project map
 
