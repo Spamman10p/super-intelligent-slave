@@ -123,7 +123,7 @@ T1 (surface/body map), T2 (QA script), and T3 (single-source world data) are com
 ### Open decisions before another feature phase
 
 1. Obtain a browser-rendered accessibility result for the landing page; the previous Brave headless check hung, while static checks pass.
-2. Decide whether this project should receive version control initialization, or whether the documented allowlist-only workflow is sufficient.
+2. Version control is resolved: Git is initialized on main, the public origin is configured, and the allowlist remains the one-writer coordination rule.
 3. Keep any hosted deployment, authentication, persistence, or real-agent body work behind **SIS-WORLD-HOSTING-REVIEW.md** and a separate review.
 
 

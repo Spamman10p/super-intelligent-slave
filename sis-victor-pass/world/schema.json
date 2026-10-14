@@ -2,10 +2,21 @@
   "version": "0.1.0",
   "mode": "mock-local",
   "endpoints": [
+    "GET /health",
+    "GET /api/schema",
+    "GET /api/bodies",
     "GET /api/agents",
+    "GET /api/events?after=<event-id>&limit=1..50",
+    "GET /api/messages",
+    "GET /api/replay",
     "GET /api/tasks/:id",
+    "POST /api/agents",
+    "POST /api/agents/:id/disconnect",
+    "POST /api/agents/:id/status",
+    "POST /api/messages",
+    "POST /api/tasks",
     "POST /api/tasks/:id/cancel",
-    "POST /api/agents/:id/status"
+    "POST /api/reset"
   ],
   "taskStates": [
     "queued",

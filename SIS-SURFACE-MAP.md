@@ -75,9 +75,10 @@ writer per file at a time; reviewers are read-only.
 | OpenCode | `sis-victor-pass/index.html`, `sis-victor-pass/world/index.html`, `SIS-OPENCODE-WORLD-UI.md` |
 | Shared read-only | `sis-victor-pass/world/{server.js,schema.json,bodies.json,README.md,adapter-*.js,provider-wrapper-example.js}` — contract + adapter boundary |
 
-**Process risk (no VCS):** the project is **not** a git repository, so the per-file allowlist above
-is the *sole* guard against concurrent-edit collisions — not branches. Coordinate out-of-band
-before touching any file another owner holds.
+**Process guard:** the project is a Git repository on main, with public remote
+https://github.com/Spamman10p/super-intelligent-slave. Git branches and diffs provide review
+history; the per-file allowlist above still means one writer per file at a time. Coordinate
+out-of-band before touching any file another owner holds.
 
 ## 6. Verification commands (read-only)
 
