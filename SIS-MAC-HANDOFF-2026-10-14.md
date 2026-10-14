@@ -107,3 +107,12 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Landing page includes a keyboard Easter egg: typing SIS reveals a temporary SIS-00 status toast. It is in-memory only.
 - Image hover effects are guarded by the existing reduced-motion policy.
 - Container browser result: landing body cards=4, archive cards=4 and loaded images=4, world body photos=4 and loaded photos=4, Easter egg text revealed, failed requests=0.
+
+## Low-credit audit and maintenance pass - 2026-10-14
+
+- Audited all repository Markdown and text documentation.
+- Added tools/sis-assets-qa.js to verify the four canonical image files and their references.
+- Added the asset check to README.md.
+- Archive cards now expose keyboard activation with Enter and Space, role=button, tabindex, and labels.
+- Historical Hermes notes still contain superseded wording (26/26, Brave-only browser wording, and pre-gallery router notes); those are preserved as historical records rather than rewritten by Codex because their files have separate ownership.
+- Current authoritative evidence is the Mac handoff, README, build plan, tools/sis-qa.js, and tools/sis-assets-qa.js.

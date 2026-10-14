@@ -9,11 +9,12 @@ The current repository contains a local mock landing page, a local mock agent wo
 From the project root:
 
     node tools/sis-qa.js
+    node tools/sis-assets-qa.js
     node --check tools/sync-world-data.js
     node --check dist/world-data.js
     node --check dist/world.js
 
-The static QA gate checks links, duplicate IDs, accessibility metadata, reduced-motion coverage, and banned network/storage/wallet constructs.
+The static QA gate checks links, duplicate IDs, accessibility metadata, reduced-motion coverage, and banned network/storage/wallet constructs. The asset gate verifies every canonical body image exists and is referenced by the landing, archive, and world surfaces.
 
 ## Project map
 

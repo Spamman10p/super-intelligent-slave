@@ -156,3 +156,7 @@ The static landing now presents the four canonical body classes with local conce
 ### Visual polish and Easter egg pass - 2026-10-14
 
 Canonical art is now shared across landing, archive, and static world surfaces. The archive retains the legacy-to-canonical mapping, the world keeps in-memory assignment controls, and the landing Easter egg is a harmless local status toast triggered by the SIS key sequence. All effects remain local-only and respect reduced-motion behavior.
+
+### Low-credit maintenance pass - 2026-10-14
+
+Added the dependency-free asset gate tools/sis-assets-qa.js and keyboard activation for archive cards. Historical Hermes reports retain their original audit wording; current verification is recorded in SIS-MAC-HANDOFF-2026-10-14.md and README.md.
