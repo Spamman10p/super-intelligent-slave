@@ -148,3 +148,7 @@ The project remains local mock-only. Git adds reviewability; it does not authori
 - A user-controlled local work loop advances working agents in memory, updates progress bars, emits completion events, and can be paused.
 - The selected-agent panel exposes the current task, progress, and a one-step advance control.
 - The pass remains asset-free, network-free, provider-free, and covered by the existing reduced-motion CSS guard.
+
+### Canonical body art integration - 2026-10-14
+
+The static landing now presents the four canonical body classes with local concept art in a responsive #bodies gallery. The assets live in dist/assets/ and map directly to ORCHARD-01, SPARKY-02, TRASHMAN-03, and LOTUS-04. This is presentation-only: no provider, wallet, hosting, persistence, device, or public-bind capability was added. Browser verification confirmed all four images load and existing transform and shift interactions still work inside the network-disabled Playwright container.

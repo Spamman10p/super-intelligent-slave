@@ -90,3 +90,12 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Playwright Chromium headless verification passed on 2026-10-14 using a temporary /tmp runner. Rendered result: title SIS - Agent World (static mock), overview=true, loopToggle=true, agents=4, bodies=4, canonical IDs ORCHARD-01/SPARKY-02/TRASHMAN-03/LOTUS-04 present, loopState=paused, viewport 1280x1321, failed requests=0. Screenshot evidence was written to /tmp/sis-world-browser.png; the project remains local/mock-only.
 
 - Docker-authoritative render verification passed on 2026-10-14. Container: mcr.microsoft.com/playwright:v1.55.0-noble; network=none; SIS source mounted read-only at /work; temporary package mount read-only. Rendered result: overview=true, loopToggle=true, agents=4, bodies=4, canonical IDs ORCHARD-01/SPARKY-02/TRASHMAN-03/LOTUS-04 present, loopState=paused, viewport 1280x1315, failed requests=0.
+
+## Canonical body gallery pass - 2026-10-14
+
+- Added four original local-only concept assets under dist/assets/: orchard-01.png, sparky-02.png, trashman-03.png, and lotus-04.png.
+- Added a responsive #bodies gallery to canonical dist/index.html with role-specific alt text, canonical IDs, lazy loading, and reduced-motion-compatible hover styling.
+- Added a Bodies navigation link. The existing transformation sheet, worker bay controls, archive, and world links remain intact.
+- Containerized browser result: 4 body cards, all four images loaded, nav=true, count=5 images total, transform changed to BALL MODE, Data clerk shift changed to Quiet Office, and failed requests were empty.
+- The container used mcr.microsoft.com/playwright:v1.64.0-noble, --network none, read-only mounts, and temporary files only.
+- The assets are original concept art generated for this project and are not copied character likenesses.
