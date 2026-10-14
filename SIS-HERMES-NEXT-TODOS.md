@@ -36,7 +36,7 @@ in `dist/archive.html`; `dist/index.html` links `archive.html` + `world.html`.
 - [x] Owner: OpenCode (new file + one doc line).
 
 Evidence (T2): `tools/sis-qa.js` exists (11,320 B); `SIS-AGENT-WORKER-OPERATIONS.md:29` names it as
-the required focused check; `node tools/sis-qa.js` → **26 checks, 26 passed, 0 failed**, exit 0.
+the required focused check; `node tools/sis-qa.js` → **29 checks, 29 passed, 0 failed**, exit 0.
 Negative fixture (broken page with no `lang`, duplicate ids, broken anchor, missing assets, missing
 `img alt`, `fetch(`) → **6 failed, exit 1**.
 

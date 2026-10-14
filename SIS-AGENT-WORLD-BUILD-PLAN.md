@@ -113,7 +113,7 @@ The plan is now aligned with the current local prototype state:
 - **Canonical surfaces:** **dist/index.html** is the published landing surface; **dist/world.html** is the static mock world; **dist/archive.html** is the archive; **sis-victor-pass/world/index.html** remains the loopback API world contract reference. The complete ownership and path map is in **SIS-SURFACE-MAP.md**.
 - **Canonical body IDs:** the shared catalog in **sis-victor-pass/world/bodies.json** is authoritative for ORCHARD-01, SPARKY-02, TRASHMAN-03, and LOTUS-04. Legacy SIS labels and agent namespaces are mapped in the surface map.
 - **Static-world data flow:** run **node tools/sync-world-data.js** after changing the shared body catalog. It regenerates **dist/world-data.js**; **dist/world.js** consumes that generated file and does not maintain a second body catalog. The static world remains network-free.
-- **Repeatable QA gate:** run **node tools/sis-qa.js**. This dependency-free, read-only check covers the **dist/** pages and assets for links, duplicate IDs, anchors, image alternatives, language metadata, reduced-motion coverage, and banned network/storage/wallet constructs. The current result is 26 passed and 0 failed.
+- **Repeatable QA gate:** run **node tools/sis-qa.js**. This dependency-free, read-only check covers the **dist/** pages and assets for links, duplicate IDs, anchors, image alternatives, language metadata, reduced-motion coverage, and banned network/storage/wallet constructs. The current result is 29 passed and 0 failed.
 - **Activity timeline:** the loopback API world includes the bounded activity timeline and existing event polling. This feature remains separate from the static mock world and does not add providers, wallets, or new endpoints.
 - **Body identity tiles:** dist/world.html and dist/world.js add asset-free, aria-hidden visual markers for the
 four body classes (data clerk, courier, sanitation, and ball scout). They are decorative only, in-memory, and covered by
@@ -125,7 +125,7 @@ T1 (surface/body map), T2 (QA script), and T3 (single-source world data) are com
 
 ### Open decisions before another feature phase
 
-1. **Resolved:** browser-rendered accessibility was verified with Brave headless against the local canonical landing page. Static SIS QA remains 26 passed and 0 failed.
+1. **Resolved:** browser-rendered accessibility was verified with Brave headless against the local canonical landing page. Static SIS QA remains 29 passed and 0 failed.
 2. Version control is resolved: Git is initialized on main, the public origin is configured, and the allowlist remains the one-writer coordination rule.
 3. Keep any hosted deployment, authentication, persistence, or real-agent body work behind **SIS-WORLD-HOSTING-REVIEW.md** and a separate review.
 
@@ -139,6 +139,6 @@ The repository guard decision is resolved in favor of local Git history.
 - The working tree was clean immediately after the baseline commit.
 - .gitignore excludes .DS_Store, node_modules/, local log files, and environment files.
 - No provider credentials or private-key material were found in the project scan. The remaining security terms are documentation or QA rule text.
-- The landing browser-rendered check now passes with Brave headless dump-dom against the local dist/index.html file. Static SIS QA remains 26 passed and 0 failed.
+- The landing browser-rendered check now passes with Brave headless dump-dom against the local dist/index.html file. Static SIS QA remains 29 passed and 0 failed.
 
 The project remains local mock-only. Git adds reviewability; it does not authorize hosted deployment, provider execution, wallet handling, or device control.

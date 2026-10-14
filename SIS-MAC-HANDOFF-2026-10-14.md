@@ -46,7 +46,7 @@ Verified current state:
 - Working tree clean after the documentation commit.
 - T1 surface/body map, T2 dependency-free dist QA, and T3 generated world-data flow are complete.
 - Brave headless dump-dom rendered dist/index.html successfully.
-- node tools/sis-qa.js passed 26 checks with 0 failures.
+- node tools/sis-qa.js passed 29 checks with 0 failures.
 - tools/sync-world-data.js and all dist JavaScript syntax checks passed.
 - The mock world remains local-only; no hosted deployment, real provider execution, wallet handling, PSN access, arbitrary shell execution, or public bind was added.
 - Disposable containers are not part of the paused state and should be started only for an active local test session.
