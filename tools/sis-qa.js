@@ -9,6 +9,7 @@
  *   5. every <img> carries an alt attribute
  *   6. animated CSS has a @media (prefers-reduced-motion) guard
  *   7. no banned network / storage / wallet *constructs*
+ *   8. canonical body IDs remain present in the archive and generated world data
  * Exit code is nonzero if any check fails. Reads files only — never writes,
  * never runs a network call, never touches providers, wallets, storage or devices.
  * Run: node tools/sis-qa.js
@@ -331,6 +332,24 @@ cssFiles.forEach(function (f) {
 jsFiles.forEach(function (f) {
   qaTokens(path.relative(ROOT, f), read(f), f);
 });
+
+/* ---- cross-surface checks ---------------------------------------------- */
+function qaCanonicalBodyIds() {
+  const ids = ["ORCHARD-01", "SPARKY-02", "TRASHMAN-03", "LOTUS-04"];
+  const archive = read(path.join(DIST, "archive.html"));
+  const worldData = read(path.join(DIST, "world-data.js"));
+  const missing = ids.filter(function (id) {
+    return archive.indexOf(id) === -1 || worldData.indexOf(id) === -1;
+  });
+  record(
+    "dist",
+    "canonical body IDs",
+    missing.length === 0,
+    missing.length ? "missing: " + missing.join(", ") : ids.join(", ")
+  );
+}
+
+qaCanonicalBodyIds();
 
 /* ---- report ------------------------------------------------------------ */
 console.log("SIS dist QA (read-only)");
