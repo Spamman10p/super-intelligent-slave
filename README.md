@@ -24,6 +24,7 @@ The static QA gate checks links, duplicate IDs, accessibility metadata, reduced-
 - SIS-SURFACE-MAP.md — canonical surfaces, bodies, and ownership
 - SIS-AGENT-WORLD-BUILD-PLAN.md — architecture and phased plan
 - SIS-WORLD-HOSTING-REVIEW.md — requirements before any hosted or real-provider phase
+- SIS-STATIC-DEPLOYMENT.md — Vercel and static-host deployment steps and boundaries
 - SIS-MAC-HANDOFF-2026-10-14.md — current stop point and next-session plan
 
 All art is currently mock/local material. Hosted deployment, real provider execution, authentication, persistence, wallet features, and device control require a separate review.
