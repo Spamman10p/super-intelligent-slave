@@ -61,3 +61,17 @@ Verified current state:
 6. For static landing/world edits, preserve the local-only boundary and run the focused QA before committing.
 7. Keep hosted deployment, authentication, persistence, real-agent bodies, and provider adapters behind SIS-WORLD-HOSTING-REVIEW.md; do not start that phase without a new review decision.
 8. Commit each coherent change with a descriptive message and leave the working tree clean at the next handoff.
+
+
+## Public GitHub publication — 2026-10-14
+
+The SIS repository is public at:
+
+https://github.com/Spamman10p/super-intelligent-slave
+
+- Owner: Spamman10p
+- Default branch: main
+- Remote: origin
+- Local branch tracks origin/main
+- Repository visibility verified as public.
+- Public contents remain the local mock-only SIS project described in README.md.
