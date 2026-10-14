@@ -27,7 +27,7 @@
 
 ## Landing accessibility pass — 2026-10-14
 
-OpenCode completed a landing accessibility pass in `sis-victor-pass/index.html`: roving-tabindex role tabs, tabpanel + live region, focus-visible and reduced-motion styling, transform `aria-pressed`, core `role=img`, parts `role=list`/`listitem`, mock-art accessibility attributes, and preserved world-link behaviour; no network/provider changes. Static verification output: **ALL STATIC CHECKS PASS**. Limitation: the Brave headless browser check hung and was interrupted, so this landing-only pass has **no browser-rendered confirmation**.
+OpenCode completed a landing accessibility pass in `sis-victor-pass/index.html`: roving-tabindex role tabs, tabpanel + live region, focus-visible and reduced-motion styling, transform `aria-pressed`, core `role=img`, parts `role=list`/`listitem`, mock-art accessibility attributes, and preserved world-link behaviour; no network/provider changes. Static verification output: **ALL STATIC CHECKS PASS**. Historical note (superseded by Docker Playwright): the Brave headless browser check hung and was interrupted, so this landing-only pass has **no browser-rendered confirmation**.
 ## Worker operations update  2026-10-14
 
 See SIS-AGENT-WORKER-OPERATIONS.md for the Cursor CLI, Hermes, OpenCode, and future Grok cloud workflow. It records Tailscale/Herdr routing, file ownership, credential boundaries, the no-SMB default, and the next setup checks.
@@ -45,7 +45,7 @@ Verified current state:
 - Guard/documentation commits: 8422e7d, a247326
 - Working tree clean after the documentation commit.
 - T1 surface/body map, T2 dependency-free dist QA, and T3 generated world-data flow are complete.
-- Brave headless dump-dom rendered dist/index.html successfully.
+- Docker Playwright headless rendered dist/index.html successfully.
 - node tools/sis-qa.js passed 30 checks with 0 failures.
 - tools/sync-world-data.js and all dist JavaScript syntax checks passed.
 - The mock world remains local-only; no hosted deployment, real provider execution, wallet handling, PSN access, arbitrary shell execution, or public bind was added.
@@ -78,7 +78,7 @@ https://github.com/Spamman10p/super-intelligent-slave
 
 ## Rendered verification refresh - 2026-10-14
 
-- Brave headless --dump-dom completed for the canonical local files dist/index.html and dist/world.html.
+- Docker Playwright headless completed for the canonical local files dist/index.html and dist/world.html; the Docker result supersedes the earlier Brave attempt.
 - Rendered evidence: landing DOM 15,819 bytes with one worker-bay marker; world DOM 7,081 bytes with body-tile markers present.
 - The browser emitted a macOS Crashpad xattr permission warning while starting. It did not prevent DOM output or alter project files.
 - No network or public bind was used; outputs were written only to temporary files under /tmp.

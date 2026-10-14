@@ -87,7 +87,7 @@ The Mac verification currently covers:
 11. [done] Add a dependency-free JSON-lines provider-wrapper example for local Hermes/OpenCode/Codex-style clients; keep provider calls and credentials outside the browser.
 12. [done] Document the hosted-deployment boundary and go/no-go requirements in SIS-WORLD-HOSTING-REVIEW.md.
 13. [done] Add a selectable body detail panel (body id, role, capabilities, state, parts, and the connected agent/task summary) reusing the existing read APIs, plus a focused `detail-smoke.js` contract check.
-14. [done] OpenCode landing accessibility pass in `sis-victor-pass/index.html`: roving-tabindex role tabs, tabpanel + live region, focus-visible and reduced-motion styling, transform `aria-pressed`, core `role=img`, parts `role=list`/`listitem`, mock-art accessibility attributes, and preserved world-link behaviour; no network/provider changes. Static verification output: **ALL STATIC CHECKS PASS**. Limitation: the Brave headless browser check hung and was interrupted, so this landing-only pass has **no browser-rendered confirmation**.
+14. [done] OpenCode landing accessibility pass in `sis-victor-pass/index.html`: roving-tabindex role tabs, tabpanel + live region, focus-visible and reduced-motion styling, transform `aria-pressed`, core `role=img`, parts `role=list`/`listitem`, mock-art accessibility attributes, and preserved world-link behaviour; no network/provider changes. Static verification output: **ALL STATIC CHECKS PASS**. Historical note (superseded by Docker Playwright): the Brave headless browser check hung and was interrupted, so this landing-only pass has **no browser-rendered confirmation**.
 15. Only after local review: evaluate hosted deployment, authentication, rate limits, persistence, and real agent bodies.
 
 ## Local commands
@@ -104,7 +104,7 @@ The local landing and agent-world prototype passed browser, adapter, provider-wr
 
 OpenCode updated sis-victor-pass/index.html only. The worker bay now has roving-tabindex role tabs, an ARIA tabpanel and live region, focus-visible and reduced-motion styling, transform aria-pressed state, core role=img, parts role=list/listitem, mock-art accessibility attributes, and preserved world-link behavior.
 
-Static verification output: ALL STATIC CHECKS PASS. Checks covered roving tabindex, transform aria-pressed, grid role, core role=img, parts list/listitems, mock-art data-slot/CSS, mock-art aria-hidden, world link, no external script source, no fetch/XHR, and no wallet/provider behavior. The Brave headless browser check hung and was interrupted, so this landing-only pass has no browser-rendered confirmation yet.
+Static verification output: ALL STATIC CHECKS PASS. Checks covered roving tabindex, transform aria-pressed, grid role, core role=img, parts list/listitems, mock-art data-slot/CSS, mock-art aria-hidden, world link, no external script source, no fetch/XHR, and no wallet/provider behavior. The earlier Brave headless browser check hung and was interrupted, so this landing-only pass has no browser-rendered confirmation yet.
 
 ## Implementation alignment — 2026-10-14
 
@@ -125,7 +125,7 @@ T1 (surface/body map), T2 (QA script), and T3 (single-source world data) are com
 
 ### Open decisions before another feature phase
 
-1. **Resolved:** browser-rendered accessibility was verified with Brave headless against the local canonical landing page. Static SIS QA remains 30 passed and 0 failed.
+1. **Resolved:** browser-rendered accessibility was verified with a Docker Playwright container against the local canonical landing page. Static SIS QA remains 30 passed and 0 failed.
 2. Version control is resolved: Git is initialized on main, the public origin is configured, and the allowlist remains the one-writer coordination rule.
 3. Keep any hosted deployment, authentication, persistence, or real-agent body work behind **SIS-WORLD-HOSTING-REVIEW.md** and a separate review.
 
@@ -139,7 +139,7 @@ The repository guard decision is resolved in favor of local Git history.
 - The working tree was clean immediately after the baseline commit.
 - .gitignore excludes .DS_Store, node_modules/, local log files, and environment files.
 - No provider credentials or private-key material were found in the project scan. The remaining security terms are documentation or QA rule text.
-- The landing browser-rendered check now passes with Brave headless dump-dom against the local dist/index.html file. Static SIS QA remains 30 passed and 0 failed.
+- The landing browser-rendered check now passes with Docker Playwright headless against the local dist/index.html file. Static SIS QA remains 30 passed and 0 failed.
 
 The project remains local mock-only. Git adds reviewability; it does not authorize hosted deployment, provider execution, wallet handling, or device control.
 ### Local interaction and visual pass - 2026-10-14
