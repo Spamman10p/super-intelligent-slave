@@ -219,6 +219,16 @@ function qaHtml(file) {
   const htmlTag = raw.match(/<html\b[^>]*>/i);
   const lang = htmlTag ? attrValues(htmlTag[0], "lang")[0] : "";
   record(rel, "html lang", !!lang, lang ? 'lang="' + lang + '"' : "missing <html lang>");
+  const headingLevels = (raw.match(/<h([1-6])\b/gi) || []).map(function (tag) {
+    return Number(tag.charAt(2));
+  });
+  const headingOk = headingLevels.length > 0 && headingLevels[0] === 1;
+  record(
+    rel,
+    "heading hierarchy",
+    headingOk,
+    headingLevels.length ? "levels: " + headingLevels.join(" -> ") : "missing heading"
+  );
 
   const ids = attrValues(raw, "id");
   const dup = ids.filter(function (v, i) {
