@@ -75,3 +75,10 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Local branch tracks origin/main
 - Repository visibility verified as public.
 - Public contents remain the local mock-only SIS project described in README.md.
+
+## Rendered verification refresh - 2026-10-14
+
+- Brave headless --dump-dom completed for the canonical local files dist/index.html and dist/world.html.
+- Rendered evidence: landing DOM 15,819 bytes with one worker-bay marker; world DOM 7,081 bytes with body-tile markers present.
+- The browser emitted a macOS Crashpad xattr permission warning while starting. It did not prevent DOM output or alter project files.
+- No network or public bind was used; outputs were written only to temporary files under /tmp.
