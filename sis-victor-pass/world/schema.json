@@ -1,0 +1,94 @@
+{
+  "version": "0.1.0",
+  "mode": "mock-local",
+  "endpoints": [
+    "GET /api/agents",
+    "GET /api/tasks/:id",
+    "POST /api/tasks/:id/cancel",
+    "POST /api/agents/:id/status"
+  ],
+  "taskStates": [
+    "queued",
+    "working",
+    "completed",
+    "failed",
+    "blocked",
+    "cancelled"
+  ],
+  "requestSchemas": {
+    "register_agent": {
+      "required": {
+        "name": "string",
+        "provider": "string"
+      },
+      "optional": {
+        "capabilities": "string[]"
+      }
+    },
+    "submit_task": {
+      "required": {
+        "agentId": "string",
+        "bodyId": "string",
+        "objective": "string(4..179; allowlisted prefix)"
+      },
+      "optional": {
+        "inputRefs": "string[]",
+        "timeoutMs": "integer(100..10000)"
+      }
+    },
+    "disconnect": {
+      "required": {
+        "agentId": "string"
+      }
+    },
+    "send_message": {
+      "required": {
+        "agentId": "string",
+        "text": "string(1..500)"
+      },
+      "optional": {
+        "channel": "string(1..32)"
+      }
+    },
+    "event_poll": {
+      "optional": {
+        "after": "event id string",
+        "limit": "integer(1..50)"
+      }
+    },
+    "cancel_task": {
+      "required": {
+        "agentId": "string"
+      }
+    },
+    "agent_status": {
+      "required": {
+        "status": "enum(idle|working|blocked|offline)"
+      },
+      "optional": {
+        "note": "string(0..200)"
+      }
+    }
+  },
+  "safety": {
+    "bind": "127.0.0.1 only",
+    "credentials": "never accepted or stored",
+    "execution": "mock tasks only"
+  },
+  "capabilityPolicy": {
+    "sort": "inspect",
+    "label": "inspect",
+    "route": "route",
+    "map": "map",
+    "inspect": "inspect",
+    "scan": "inspect",
+    "report": "inspect",
+    "mock": "inspect"
+  },
+  "agentStatuses": [
+    "idle",
+    "working",
+    "blocked",
+    "offline"
+  ]
+}

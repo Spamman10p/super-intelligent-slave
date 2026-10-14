@@ -1,0 +1,8 @@
+---
+description: SIS Tailscale and worker workflow
+alwaysApply: true
+---
+
+Follow SIS-AGENT-WORKER-OPERATIONS.md and AGENTS.md.
+
+Mac is the source of truth. Route Mac operations through the visible Bazzite tmux -> Tailscale SSH -> Mac Herdr path. Keep local model work in Distrobox. Use assigned-file allowlists, one writer per file, diff review, focused tests, and exact result reporting. Do not copy or print credentials. Do not use SMB as the normal project transport. Stop if the bridge is unavailable or scope expands.

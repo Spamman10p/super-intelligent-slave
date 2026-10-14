@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIS — Agent World (static mock)</title>
+<link rel="stylesheet" href="world.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">SIS<span>//</span>WORLD</div>
+  <div class="sub">static mock · local-only · no network</div>
+</header>
+
+<main>
+  <section aria-label="Rooms">
+    <h2>Rooms</h2>
+    <div id="roomGrid" class="room-grid"></div>
+  </section>
+
+  <aside class="panel" aria-label="Agents and bodies">
+    <h2>Agents</h2>
+    <ul id="agentList" class="agents"></ul>
+
+    <div id="agentDetail" class="detail" aria-live="polite">No agent selected.</div>
+
+    <h2>Bodies</h2>
+    <ul id="bodyList" class="bodies"></ul>
+  </aside>
+</main>
+
+<footer>
+  <div id="status" class="status" role="status" aria-live="polite">Select an agent to begin.</div>
+  <div id="log" class="log" aria-live="polite" aria-label="Event log"></div>
+</footer>
+
+<noscript>
+  <p style="padding:0 4vw 40px;color:#9ba9ad">
+    This mock world needs JavaScript for its local interactions (select / assign / move).
+    It makes no network calls.
+  </p>
+</noscript>
+
+<script src="world-data.js"></script>
+<script src="world.js"></script>
+</body>
+</html>

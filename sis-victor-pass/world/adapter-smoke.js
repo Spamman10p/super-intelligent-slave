@@ -1,0 +1,52 @@
+const assert=(condition,message)=>{if(!condition)throw new Error(message)};
+const {WorldAdapter}=require('./adapter-client');
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+(async()=>{
+  const adapter=new WorldAdapter({name:'adapter-smoke',provider:'local-mock',capabilities:['map','message']});
+  const schema=await adapter.schema();
+  assert(schema.version,'schema version missing');
+  const catalog=await adapter.bodies();
+  assert(Array.isArray(catalog.bodies)&&catalog.bodies.length>0,'body catalog empty');
+  const agent=await adapter.register();
+  assert(agent.id,'agent id missing');
+  const roster=await adapter.agents();
+  assert(roster.agents.some(item=>item.id===agent.id),'agent roster empty');
+  const body=catalog.bodies.find(item=>item.capabilities.includes('map'));
+  assert(body&&body.id,'map-capable body missing');
+  const restricted=new WorldAdapter({name:'restricted-smoke',provider:'local-mock',capabilities:['inspect']});
+  await restricted.register();
+  let capabilityRejected=false;
+  try{await restricted.submitTask(body.id,'map mock sector')}catch(error){capabilityRejected=error.status===403}
+  await restricted.disconnect();
+  assert(capabilityRejected,'capability mismatch was accepted');
+  const cancelAdapter=new WorldAdapter({name:'cancel-smoke',provider:'local-mock',capabilities:['map']});
+  await cancelAdapter.register();
+  const cancelQueued=await cancelAdapter.submitTask(body.id,'map mock sector');
+  const cancelledTask=await cancelAdapter.cancelTask(cancelQueued.task.id);
+  assert(cancelledTask.task.state==='cancelled','task cancellation failed');
+  await cancelAdapter.disconnect();
+  const queued=await adapter.submitTask(body.id,'map mock sector',{inputRefs:['smoke://fixture'],timeoutMs:1000});
+  assert(queued.task&&queued.task.id,'task id missing');
+  let current;
+  for(let i=0;i<20;i++){
+    current=await adapter.task(queued.task.id);
+    if(current.task.state==='completed'||current.task.state==='failed')break;
+    await sleep(100);
+  }
+  assert(current.task.state==='completed','task did not complete');
+  const status=await adapter.status('working','smoke status');
+  assert(status.agent&&status.agent.status==='working','status update failed');
+  const statusEvents=await adapter.events();
+  assert(statusEvents.events.some(item=>item.type==='agent.status'),'status event missing');
+  const before=await adapter.events();
+  const cursor=before.latest;
+  const sent=await adapter.sendMessage('adapter smoke status','work-floor');
+  const delta=await adapter.events(cursor);
+  assert(delta.events.some(item=>item.type==='message.created'),'event cursor did not return new message');
+  assert(sent.message&&sent.message.channel==='work-floor','message failed');
+  const replay=await adapter.replay();
+  assert(replay.tasks.some(item=>item.id===queued.task.id),'task missing from replay');
+  assert(replay.messages.some(item=>item.text==='adapter smoke status'),'message missing from replay');
+  await adapter.disconnect();
+  console.log(JSON.stringify({ok:true,body:body.id,state:current.task.state,capabilityRejected,cancelled:cancelledTask.task.state,replayTasks:replay.tasks.length,replayMessages:replay.messages.length}));
+})().catch(error=>{console.error(error.message);process.exit(1)});
