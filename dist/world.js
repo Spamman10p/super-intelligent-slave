@@ -165,6 +165,15 @@
       "body: " + (b ? esc(b.id) + " / " + esc(b.klass) : "<i>none</i>");
   }
 
+  function bodyTileClass(klass) {
+    return {
+      "data-clerk": "data-clerk",
+      courier: "courier",
+      sanitation: "sanitation",
+      "ball-scout": "ball-scout"
+    }[klass] || "generic";
+  }
+
   function renderBodies() {
     var host = document.getElementById("bodyList");
     if (!host) return;
@@ -172,6 +181,12 @@
     bodies.forEach(function (b) {
       var li = document.createElement("li");
       li.className = "body";
+
+      var tile = document.createElement("div");
+      tile.className = "body-tile " + bodyTileClass(b.klass);
+      tile.setAttribute("aria-hidden", "true");
+      tile.innerHTML = '<span class="tile-core"></span><span class="tile-panel"></span>';
+      li.appendChild(tile);
 
       var row = document.createElement("div");
       row.className = "brow";

@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SIS — Agent World (static mock)</title>
 <link rel="stylesheet" href="world.css">
+<style>
+/* Decorative body identity tiles: mock-local, asset-free, and hidden from assistive technology. */
+.body-tile{position:relative;height:46px;overflow:hidden;border:1px solid var(--line);border-radius:7px;background:linear-gradient(135deg,#111b1c,#0a0f10)}
+.body-tile .tile-core,.body-tile .tile-panel{position:absolute;display:block}
+.body-tile.data-clerk .tile-core{left:42%;top:7px;width:24px;height:32px;border:2px solid var(--c);border-radius:4px;background:linear-gradient(90deg,transparent 34%,#54e6da33 35% 65%,transparent 66%)}
+.body-tile.data-clerk .tile-panel{left:46%;top:17px;width:16px;height:2px;background:var(--a);box-shadow:0 7px 0 #54e6da88}
+.body-tile.courier .tile-core{left:38%;top:8px;width:30px;height:30px;border:2px solid var(--c);border-radius:50%;background:radial-gradient(circle at 35% 30%,#d6ff3f 0 7%,#182425 8% 62%,#54e6da 63% 68%,#0a0f10 69%)}
+.body-tile.courier .tile-panel{left:62%;top:15px;width:20px;height:18px;border:2px solid var(--a);border-radius:3px;background:#d6ff3f22}
+.body-tile.sanitation .tile-core{left:38%;top:13px;width:38px;height:20px;border:2px solid var(--c);border-radius:4px 12px 12px 4px;transform:rotate(-8deg)}
+.body-tile.sanitation .tile-panel{left:31%;top:8px;width:4px;height:31px;background:var(--a);box-shadow:8px 1px 0 #d6ff3f99,16px 2px 0 #d6ff3f66}
+.body-tile.ball-scout .tile-core{left:38%;top:7px;width:32px;height:32px;border:2px solid var(--c);border-radius:50%;background:conic-gradient(from 25deg,#101819 0 12%,#54e6da 13% 17%,#101819 18% 44%,#d6ff3f 45% 49%,#101819 50% 76%,#54e6da 77% 81%,#101819 82%)}
+.body-tile.ball-scout .tile-panel{left:50%;top:7px;width:2px;height:32px;background:#e9eef088;transform:rotate(34deg)}
+.body-tile.generic .tile-core{left:42%;top:10px;width:26px;height:26px;border:2px solid var(--c);border-radius:50%}
+@media (prefers-reduced-motion:reduce){.body-tile,.body-tile *{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <header class="topbar">
