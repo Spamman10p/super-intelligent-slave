@@ -104,7 +104,7 @@ The local landing and agent-world prototype passed browser, adapter, provider-wr
 
 OpenCode updated sis-victor-pass/index.html only. The worker bay now has roving-tabindex role tabs, an ARIA tabpanel and live region, focus-visible and reduced-motion styling, transform aria-pressed state, core role=img, parts role=list/listitem, mock-art accessibility attributes, and preserved world-link behavior.
 
-Static verification output: ALL STATIC CHECKS PASS. Checks covered roving tabindex, transform aria-pressed, grid role, core role=img, parts list/listitems, mock-art data-slot/CSS, mock-art aria-hidden, world link, no external script source, no fetch/XHR, and no wallet/provider behavior. The earlier Brave headless browser check hung and was interrupted, so this landing-only pass has no browser-rendered confirmation yet.
+Static verification output: ALL STATIC CHECKS PASS. Checks covered roving tabindex, transform aria-pressed, grid role, core role=img, parts list/listitems, mock-art data-slot/CSS, mock-art aria-hidden, world link, no external script source, no fetch/XHR, and no wallet/provider behavior. The earlier Brave headless browser check hung and was interrupted, so this landing-only pass has Docker Playwright verification now covers the canonical landing, archive, and world surfaces.
 
 ## Implementation alignment — 2026-10-14
 

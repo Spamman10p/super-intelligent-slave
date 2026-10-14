@@ -52,7 +52,7 @@ Negative fixture (broken page with no `lang`, duplicate ids, broken anchor, miss
 Evidence (T3): `tools/sync-world-data.js` generated `dist/world-data.js` (4 bodies); generated data
 **MATCHES** `bodies.json` (id/klass/caps); world smoke **15/15**; sync is **idempotent** (re-run
 hash stable, `ede49301…`); `dist/world.html` token scan clean (no `fetch|XMLHttpRequest|WebSocket|/api/|http(s)://`)
-and loads `world-data.js` before `world.js`; `tools/sis-qa.js` all-pass (26/26).
+and loads `world-data.js` before `world.js`; `tools/sis-qa.js` all-pass (30/30).
 
 ## Guardrails (do not regress)
 

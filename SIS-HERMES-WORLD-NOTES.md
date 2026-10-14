@@ -65,7 +65,6 @@ state is exposed via `aria-pressed`; the status/detail regions are `aria-live="p
    detail shape in the existing world UI; a future refactor could share one renderer.
 3. **Persistence/replay** — the event log is ephemeral. If history should survive reload, that
    needs an explicit (and currently out-of-scope) storage decision.
-4. **Router/link** — optionally link `world.html` from the landing page, but `dist/index.html` was
-   explicitly not edited in this task.
+4. Router/link - resolved in the current release: canonical dist/index.html links to world.html; the earlier note is historical.
 
 _Static mock only — no live systems, no deployment._

@@ -114,5 +114,5 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Added tools/sis-assets-qa.js to verify the four canonical image files and their references.
 - Added the asset check to README.md.
 - Archive cards now expose keyboard activation with Enter and Space, role=button, tabindex, and labels.
-- Historical Hermes notes still contain superseded wording (26/26, Brave-only browser wording, and pre-gallery router notes); those are preserved as historical records rather than rewritten by Codex because their files have separate ownership.
+- Historical Hermes wording has been reconciled with the current release; older audit context remains labeled as history.
 - Current authoritative evidence is the Mac handoff, README, build plan, tools/sis-qa.js, and tools/sis-assets-qa.js.
