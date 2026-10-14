@@ -125,3 +125,17 @@ T1 (surface/body map), T2 (QA script), and T3 (single-source world data) are com
 1. Obtain a browser-rendered accessibility result for the landing page; the previous Brave headless check hung, while static checks pass.
 2. Decide whether this project should receive version control initialization, or whether the documented allowlist-only workflow is sufficient.
 3. Keep any hosted deployment, authentication, persistence, or real-agent body work behind **SIS-WORLD-HOSTING-REVIEW.md** and a separate review.
+
+
+## Guard decision closeout — 2026-10-14
+
+The repository guard decision is resolved in favor of local Git history.
+
+- Git is initialized on branch main.
+- Baseline commit: c5bd249 (Baseline SIS local mock world).
+- The working tree was clean immediately after the baseline commit.
+- .gitignore excludes .DS_Store, node_modules/, local log files, and environment files.
+- No provider credentials or private-key material were found in the project scan. The remaining security terms are documentation or QA rule text.
+- The landing browser-rendered check now passes with Brave headless dump-dom against the local dist/index.html file. Static SIS QA remains 26 passed and 0 failed.
+
+The project remains local mock-only. Git adds reviewability; it does not authorize hosted deployment, provider execution, wallet handling, or device control.

@@ -67,8 +67,7 @@ and loads `world-data.js` before `world.js`; `tools/sis-qa.js` all-pass (26/26).
 
 - [x] No committed tests for any `dist/*` page → **T2** addresses this — resolved by `tools/sis-qa.js`
 - [x] Landing accessibility pass has browser-rendered confirmation: Brave headless dump-dom succeeded against local dist/index.html; static checks remain green.
-- [ ] No version control in the project, though worker rules assume branches/diffs — decide:
-      init git, or document that the file allowlist is the sole guard — **OPEN**
+- [x] Git guard initialized on the Mac project: main branch with baseline commit c5bd249; .gitignore excludes local logs, environment files, and node_modules.
 - [x] Build-plan checklist now records the activity timeline, T1-T3 completion, canonical surface map, generated world data, and QA gate.
 
 _Checklist derived read-only from the review; no source or runtime file edited._
