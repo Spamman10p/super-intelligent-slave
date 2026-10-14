@@ -152,3 +152,7 @@ The project remains local mock-only. Git adds reviewability; it does not authori
 ### Canonical body art integration - 2026-10-14
 
 The static landing now presents the four canonical body classes with local concept art in a responsive #bodies gallery. The assets live in dist/assets/ and map directly to ORCHARD-01, SPARKY-02, TRASHMAN-03, and LOTUS-04. This is presentation-only: no provider, wallet, hosting, persistence, device, or public-bind capability was added. Browser verification confirmed all four images load and existing transform and shift interactions still work inside the network-disabled Playwright container.
+
+### Visual polish and Easter egg pass - 2026-10-14
+
+Canonical art is now shared across landing, archive, and static world surfaces. The archive retains the legacy-to-canonical mapping, the world keeps in-memory assignment controls, and the landing Easter egg is a harmless local status toast triggered by the SIS key sequence. All effects remain local-only and respect reduced-motion behavior.

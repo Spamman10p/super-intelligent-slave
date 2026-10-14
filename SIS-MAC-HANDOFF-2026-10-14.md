@@ -99,3 +99,11 @@ https://github.com/Spamman10p/super-intelligent-slave
 - Containerized browser result: 4 body cards, all four images loaded, nav=true, count=5 images total, transform changed to BALL MODE, Data clerk shift changed to Quiet Office, and failed requests were empty.
 - The container used mcr.microsoft.com/playwright:v1.64.0-noble, --network none, read-only mounts, and temporary files only.
 - The assets are original concept art generated for this project and are not copied character likenesses.
+
+## Visual polish and Easter egg pass - 2026-10-14
+
+- Archive cards now use the four canonical body images with local asset paths, while keeping legacy SIS IDs and canonical ID mapping visible.
+- Static world body tiles now use the same four local images with accessible alt text and a decorative fallback.
+- Landing page includes a keyboard Easter egg: typing SIS reveals a temporary SIS-00 status toast. It is in-memory only.
+- Image hover effects are guarded by the existing reduced-motion policy.
+- Container browser result: landing body cards=4, archive cards=4 and loaded images=4, world body photos=4 and loaded photos=4, Easter egg text revealed, failed requests=0.

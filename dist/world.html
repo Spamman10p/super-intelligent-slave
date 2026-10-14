@@ -6,7 +6,7 @@
 <title>SIS — Agent World (static mock)</title>
 <link rel="stylesheet" href="world.css">
 <style>
-/* Decorative body identity tiles: mock-local, asset-free, and hidden from assistive technology. */
+/* Body identity tiles: mock-local canonical art with a decorative fallback shape. */
 .body-tile{position:relative;height:46px;overflow:hidden;border:1px solid var(--line);border-radius:7px;background:linear-gradient(135deg,#111b1c,#0a0f10)}
 .body-tile .tile-core,.body-tile .tile-panel{position:absolute;display:block}
 .body-tile.data-clerk .tile-core{left:42%;top:7px;width:24px;height:32px;border:2px solid var(--c);border-radius:4px;background:linear-gradient(90deg,transparent 34%,#54e6da33 35% 65%,transparent 66%)}
@@ -18,7 +18,7 @@
 .body-tile.ball-scout .tile-core{left:38%;top:7px;width:32px;height:32px;border:2px solid var(--c);border-radius:50%;background:conic-gradient(from 25deg,#101819 0 12%,#54e6da 13% 17%,#101819 18% 44%,#d6ff3f 45% 49%,#101819 50% 76%,#54e6da 77% 81%,#101819 82%)}
 .body-tile.ball-scout .tile-panel{left:50%;top:7px;width:2px;height:32px;background:#e9eef088;transform:rotate(34deg)}
 .body-tile.generic .tile-core{left:42%;top:10px;width:26px;height:26px;border:2px solid var(--c);border-radius:50%}
-@media (prefers-reduced-motion:reduce){.body-tile,.body-tile *{animation:none!important;transition:none!important}}
+.body-photo{display:block;width:100%;height:100%;object-fit:cover;opacity:.9;filter:saturate(.85) contrast(1.08);transition:transform .3s,filter .3s}.body-tile:hover .body-photo{transform:scale(1.08);filter:saturate(1.1) contrast(1.12)}@media (prefers-reduced-motion:reduce){.body-tile,.body-tile *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>

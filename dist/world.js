@@ -202,6 +202,19 @@
     }[klass] || "generic";
   }
 
+  function bodyAsset(id) {
+    return {
+      "ORCHARD-01": "assets/orchard-01.png",
+      "SPARKY-02": "assets/sparky-02.png",
+      "TRASHMAN-03": "assets/trashman-03.png",
+      "LOTUS-04": "assets/lotus-04.png"
+    }[id] || "";
+  }
+
+  function bodyAlt(b) {
+    return b.id + " " + b.klass + " body concept";
+  }
+
   function renderBodies() {
     var host = document.getElementById("bodyList");
     if (!host) return;
@@ -212,8 +225,9 @@
 
       var tile = document.createElement("div");
       tile.className = "body-tile " + bodyTileClass(b.klass);
-      tile.setAttribute("aria-hidden", "true");
-      tile.innerHTML = '<span class="tile-core"></span><span class="tile-panel"></span>';
+      tile.innerHTML = bodyAsset(b.id)
+        ? '<img class="body-photo" src="' + bodyAsset(b.id) + '" alt="' + esc(bodyAlt(b)) + '" loading="lazy">'
+        : '<span class="tile-core" aria-hidden="true"></span><span class="tile-panel" aria-hidden="true"></span>';
       li.appendChild(tile);
 
       var row = document.createElement("div");
