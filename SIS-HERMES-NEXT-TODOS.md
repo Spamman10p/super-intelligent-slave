@@ -5,7 +5,7 @@ control. One worker owns one file at a time; show a diff and run the focused che
 Source: `SIS-HERMES-NEXT-REVIEW.md` (2026-10-14).
 
 **Closeout — 2026-10-14.** T1, T2 and T3 are complete and verified on disk (evidence below).
-The three remaining gaps — browser render, version control, build-plan doc — are left **open**.
+The previously open gaps — browser render, version control, and build-plan documentation — are now closed and verified.
 
 ## Start here
 
