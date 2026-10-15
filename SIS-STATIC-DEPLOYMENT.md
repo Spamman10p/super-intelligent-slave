@@ -31,6 +31,6 @@ Run from the repository root:
     node --check tools/sync-world-data.js
     node --check dist/world-data.js
     node --check dist/world.js
-    python3 -m json.tool vercel.json
+    node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8'))"
 
 A clean git status and passing checks are required before publishing.
