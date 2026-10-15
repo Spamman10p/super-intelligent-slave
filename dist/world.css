@@ -147,3 +147,31 @@ footer{padding:0 4vw 40px;max-width:1200px;margin:0 auto}
 }
 .detail-action:hover{border-color:var(--a);color:var(--a)}
 @media (prefers-reduced-motion:reduce){.progress-fill{transition:none}}
+
+
+/* UI review pass: make interactive surfaces readable by keyboard and pointer. */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--c);
+  outline-offset: 3px;
+}
+.agent,
+.body {
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.agent:hover,
+.body:hover {
+  transform: translateY(-2px);
+  border-color: var(--c);
+  box-shadow: 0 8px 22px #0008;
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent,
+  .body {
+    transition: none;
+  }
+  .agent:hover,
+  .body:hover {
+    transform: none;
+  }
+}
