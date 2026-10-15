@@ -5,6 +5,6 @@
 - Source mount: Mac project mounted read-only; browser used a disposable `/tmp/sis3d` copy.
 - Static QA: `SIS 3D prototype QA: PASS (4 files, local-only markers present)`.
 - Node syntax: `node --check prototypes/sis-3d-world/world.js` passed.
-- Browser result: page errors empty; 14 controls present; 4 robots and 6 zones rendered; Sparky selected; work loop `aria-pressed=true`; Sparky moved to Workshop; body part `head-lamp` swap updated the detail panel.
+- Browser result: page errors empty; 14 controls present; 4 robots and 6 zones rendered; Sparky selected; work loop `aria-pressed=true`; Sparky moved to Workshop; `head-lamp` set the robot data-part; reversible transform set the robot `transforming` class and logged its completion.
 - No provider, wallet, authentication, persistence, public bind, or external request was used.
 - This validates the dependency-free scene contract. It is not yet the Viverse/React renderer or a persistent multiplayer world.
