@@ -175,3 +175,5 @@ a:focus-visible {
     transform: none;
   }
 }
+
+.world-3d-link{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--c);text-decoration:none;font-size:12px}.world-3d-link:hover,.world-3d-link:focus-visible{border-color:var(--c);box-shadow:0 0 0 3px #d6ff3f22;outline:0}
