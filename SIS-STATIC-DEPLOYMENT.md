@@ -11,6 +11,8 @@ SIS is a static, local/mock website. The publish directory is dist/; there is no
 5. Set the output directory to dist (the checked-in vercel.json already declares this).
 6. Deploy the main branch.
 
+The published `dist/` tree now includes the standalone `sis-3d/` preview linked from the world page. It is still local/mock-only and ships no runtime network access.
+
 The same dist/ directory can be uploaded to any static host that supports HTML, CSS, JavaScript, and PNG files.
 
 ## Hosting boundary
@@ -24,10 +26,11 @@ The included headers add basic browser hardening and set connect-src none so the
 Run from the repository root:
 
     node tools/sis-qa.js
+    node prototypes/sis-3d-world/qa.js
     node tools/sis-assets-qa.js
     node --check tools/sync-world-data.js
     node --check dist/world-data.js
     node --check dist/world.js
-    python3 -m json.tool vercel.json
+    node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8'))"
 
 A clean git status and passing checks are required before publishing.

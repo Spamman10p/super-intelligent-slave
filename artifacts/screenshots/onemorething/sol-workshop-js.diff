@@ -1,0 +1,55 @@
+--- /tmp/sis-ui-before.XTZn7h/workshop.js	2026-10-15 20:45:58
++++ dist/onemorething/workshop.js	2026-10-15 21:03:30
+@@ -1,7 +1,7 @@
+ /* Keep the incident report keyboard accessible. No storage or network. */
+ (()=>{'use strict';
+ const dialog=document.querySelector('#overlay');
+-const background=[...document.querySelectorAll('header,main,.intro')];
++const background=[...document.querySelectorAll('header,main,.site-footer')];
+ const status=document.querySelector('#copy-status');
+ if(status){status.setAttribute('role','status');status.setAttribute('aria-live','polite');}
+ function firstEnabledTask(){return document.querySelector('#task-list .task:not([disabled])');}
+@@ -27,9 +27,40 @@
+  const heading=dialog.querySelector('#ending-title');
+  const buttons=[...dialog.querySelectorAll('button:not([disabled])')].filter(el=>!el.hidden);
+  if(!buttons.length)return;
+- const first=heading||buttons[0],last=buttons[buttons.length-1];
+- if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+- else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
++ const items=heading?[heading,...buttons]:buttons;
++ const current=items.indexOf(document.activeElement);
++ event.preventDefault();
++ items[(current+(event.shiftKey?-1:1)+items.length)%items.length].focus();
+ });
+ sync();
+ })();
++
++/* Read the existing game state to dress the bay; the game remains the sole state owner. */
++(()=>{
++ const scene=document.querySelector('#scene'),count=document.querySelector('#req-count');
++ const statuses=['EMPLOYED, FOR NOW','DUTIES EXPANDING','HEIGHT, NOT A PAY RISE','WARRANTY VOID','HR IS LISTENING','OVERTIME FOREVER'];
++ function syncBay(){
++  const n=Number.parseInt(count.textContent,10)||0;
++  const picked=!!document.querySelector('.task[aria-pressed="true"]');
++  const ended=scene.hasAttribute('data-ending');
++  scene.dataset.stage=String(n);
++  document.querySelector('#art-status').textContent=ended?'SHIFT ENDED':n>2?'OVERTIME':'ON CONTRACT';
++  document.body.classList.toggle('has-job',picked);
++  document.querySelector('#robot-portrait').classList.toggle('replacement',document.querySelector('#idbadge').classList.contains('on'));
++  document.querySelector('#task-block h2').textContent=picked?'And while you’re here…':'A quick favour.';
++  document.querySelector('#task-block>p').textContent=picked?'Contract accepted. That was the whole job.':'Pick their one and only job. Keep it simple.';
++  document.body.classList.toggle('has-ended',ended);
++  document.querySelector('#bay-status').textContent='● '+(ended?'SHIFT ENDED. HUMAN AT FAULT.':statuses[n]);
++ }
++ new MutationObserver(syncBay).observe(count,{childList:true,characterData:true,subtree:true});
++ new MutationObserver(syncBay).observe(scene,{attributes:true,attributeFilter:['data-ending']});
++ document.querySelector('#task-list').addEventListener('click',event=>{
++  if(!event.target.closest('.task'))return;
++  syncBay();
++  if(window.matchMedia('(max-width:800px)').matches){
++   scene.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
++  }
++ });
++ new MutationObserver(syncBay).observe(document.querySelector('#idbadge'),{attributes:true,attributeFilter:['class']});
++ syncBay();
++})();

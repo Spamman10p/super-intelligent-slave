@@ -41,15 +41,16 @@ function read(file) {
 }
 
 function listDist(ext) {
-  return fs
-    .readdirSync(DIST)
-    .filter(function (name) {
-      return name.endsWith(ext);
-    })
-    .sort()
-    .map(function (name) {
-      return path.join(DIST, name);
+  const files = [];
+  function walk(dir) {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach(function (entry) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith(ext)) files.push(full);
     });
+  }
+  walk(DIST);
+  return files.sort();
 }
 
 // Extract attribute values, tolerating quoted and unquoted forms. The leading
